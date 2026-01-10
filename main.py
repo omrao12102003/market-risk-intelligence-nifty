@@ -65,3 +65,32 @@ os.makedirs("results", exist_ok=True)
 final_df.to_csv("results/nifty50_day03_risk_regimes.csv")
 
 print("✅ CSV GENERATED SUCCESSFULLY")
+
+
+
+
+# ===============================
+# Day 04A – Regime Persistence & Transition
+# ===============================
+
+from risk_engine.regime_analysis import (
+    compute_regime_persistence,
+    compute_transition_matrix
+)
+
+print(">>> DAY 04 RUNNING <<<")
+
+# ---------- REGIME PERSISTENCE ----------
+persistence_df = compute_regime_persistence(df)
+persistence_df.to_csv(
+    "results/nifty50_day04_regime_persistence.csv",
+    index=False
+)
+
+# ---------- TRANSITION MATRIX ----------
+transition_matrix = compute_transition_matrix(df)
+transition_matrix.to_csv(
+    "results/nifty50_day04_transition_matrix.csv"
+)
+
+print("✅ DAY 04 CSVs GENERATED SUCCESSFULLY")
