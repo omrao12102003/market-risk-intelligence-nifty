@@ -94,3 +94,23 @@ transition_matrix.to_csv(
 )
 
 print("✅ DAY 04 CSVs GENERATED SUCCESSFULLY")
+
+
+
+
+# ===============================
+# Day 04B – Regime Performance
+# ===============================
+
+from risk_engine.regime_performance import compute_regime_performance
+
+print(">>> DAY 04B RUNNING <<<")
+
+regime_perf_df = compute_regime_performance(df)
+
+regime_perf_df.to_csv(
+    "results/nifty50_day04b_regime_performance.csv",
+    index=False
+)
+
+print("✅ DAY 04B CSV GENERATED SUCCESSFULLY")
