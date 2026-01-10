@@ -114,3 +114,52 @@ regime_perf_df.to_csv(
 )
 
 print("✅ DAY 04B CSV GENERATED SUCCESSFULLY")
+
+
+
+
+# ===============================
+# Day 05 – HMM Regime Detection
+# ===============================
+
+from risk_engine.hmm_regime import fit_hmm_regimes
+
+print(">>> DAY 05 RUNNING (HMM) <<<")
+
+hmm_features = [
+    "returns",
+    "volatility_20d",
+    "drawdown"
+]
+
+df_hmm, hmm_model = fit_hmm_regimes(
+    df,
+    feature_cols=hmm_features,
+    n_states=3
+)
+
+df_hmm.to_csv(
+    "results/nifty50_day05_hmm_regimes.csv"
+)
+
+print("✅ DAY 05 HMM CSV GENERATED SUCCESSFULLY")
+
+
+
+
+# ===============================
+# Day 06 – HMM Regime Interpretation
+# ===============================
+
+from risk_engine.hmm_analysis import summarize_hmm_states
+
+print(">>> DAY 06 RUNNING <<<")
+
+hmm_summary_df = summarize_hmm_states(df_hmm)
+
+hmm_summary_df.to_csv(
+    "results/nifty50_day06_hmm_state_summary.csv",
+    index=False
+)
+
+print("✅ DAY 06 HMM SUMMARY GENERATED SUCCESSFULLY")
