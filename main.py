@@ -209,3 +209,41 @@ df[strategy_cols].to_csv(
 )
 
 print("✅ DAY 07 STRATEGY CSV GENERATED SUCCESSFULLY")
+# ===============================
+# Day 08 – Strategy Performance
+# ===============================
+
+from risk_engine.performance_metrics import (
+    compute_equity_curve,
+    compute_sharpe_ratio,
+    compute_max_drawdown
+)
+
+print(">>> DAY 08 RUNNING <<<")
+
+performance_summary = []
+
+strategies = {
+    "Buy_and_Hold": df["bh_returns"],
+    "Rule_Based": df["rule_strategy_returns"],
+    "HMM_Based": df["hmm_strategy_returns"]
+}
+
+for name, returns in strategies.items():
+
+    equity = compute_equity_curve(returns)
+
+    performance_summary.append({
+        "strategy": name,
+        "sharpe_ratio": compute_sharpe_ratio(returns),
+        "max_drawdown": compute_max_drawdown(equity)
+    })
+
+performance_df = pd.DataFrame(performance_summary)
+
+performance_df.to_csv(
+    "results/nifty50_day08_strategy_performance.csv",
+    index=False
+)
+
+print("✅ DAY 08 PERFORMANCE SUMMARY GENERATED SUCCESSFULLY")
