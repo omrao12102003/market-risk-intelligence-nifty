@@ -163,3 +163,49 @@ hmm_summary_df.to_csv(
 )
 
 print("✅ DAY 06 HMM SUMMARY GENERATED SUCCESSFULLY")
+
+
+
+# ===============================
+# Day 07 – Regime-Aware Strategy
+# ===============================
+
+from risk_engine.strategy_overlay import (
+    compute_strategy_returns,
+    rule_based_exposure,
+    hmm_based_exposure
+)
+
+print(">>> DAY 07 RUNNING <<<")
+
+# Buy & Hold
+df["bh_returns"] = df["returns"]
+
+# Rule-based strategy
+df["rule_exposure"] = rule_based_exposure(df)
+df["rule_strategy_returns"] = compute_strategy_returns(
+    df, "rule_exposure"
+)
+
+# HMM-based strategy
+df["hmm_exposure"] = hmm_based_exposure(
+    df_hmm,
+    hmm_summary_df
+)
+df["hmm_strategy_returns"] = compute_strategy_returns(
+    df, "hmm_exposure"
+)
+
+# Save results
+strategy_cols = [
+    "returns",
+    "bh_returns",
+    "rule_strategy_returns",
+    "hmm_strategy_returns"
+]
+
+df[strategy_cols].to_csv(
+    "results/nifty50_day07_strategy_returns.csv"
+)
+
+print("✅ DAY 07 STRATEGY CSV GENERATED SUCCESSFULLY")
