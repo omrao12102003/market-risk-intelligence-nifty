@@ -257,13 +257,13 @@ CSV Outputs and Their Purpose
 
 Each CSV represents a **specific stage of analysis**:
 
-* Day 03: Daily regime labels
-* Day 04A: Regime persistence and transitions
-* Day 04B: Regime-wise economic validation
-* Day 05: HMM-discovered regimes
-* Day 06: Financial interpretation of HMM states
-* Day 07: Strategy daily returns
-* Day 08: Final performance comparison
+* Daily regime labels
+* Regime persistence and transitions
+* Regime-wise economic validation
+* HMM-discovered regimes
+* Financial interpretation of HMM states
+* Strategy daily returns
+* Final performance comparison
 
 These files allow:
 
@@ -315,5 +315,6 @@ This project demonstrates:
 
 
 ---
+
 
 
