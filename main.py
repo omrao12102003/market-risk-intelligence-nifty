@@ -1,7 +1,6 @@
-# ===============================
+
 # Market Risk Intelligence
-# Day 03 – Regime Detection
-# ===============================
+
 
 import os
 import numpy as np
@@ -10,9 +9,9 @@ import pandas as pd
 from risk_engine.regime_detection import add_risk_regimes
 
 
-print(">>> NEW MAIN.PY RUNNING <<<")
+print("NEW MAIN.PY RUNNING")
 
-# ---------- LOAD DATA ----------
+# LOAD DATA
 df = pd.read_csv("data/nifty50_daily.csv")
 
 df.columns = df.columns.str.strip()
@@ -21,11 +20,11 @@ df['date'] = pd.to_datetime(df['date'])
 df.set_index('date', inplace=True)
 
 
-# ---------- RETURNS ----------
+#RETURNS
 df['returns'] = df['close'].pct_change()
 
 
-# ---------- VOLATILITY ----------
+#VOLATILITY
 df['volatility_20d'] = (
     df['returns']
     .rolling(20)
@@ -34,21 +33,21 @@ df['volatility_20d'] = (
 )
 
 
-# ---------- DRAWDOWN ----------
+# DRAWDOWN
 df['cum_returns'] = (1 + df['returns']).cumprod()
 df['rolling_max'] = df['cum_returns'].cummax()
 df['drawdown'] = (df['cum_returns'] - df['rolling_max']) / df['rolling_max']
 
 
-# ---------- CLEAN ----------
+# CLEAN
 df = df.dropna()
 
 
-# ---------- RISK REGIME ENGINE ----------
+#RISK REGIME ENGINE
 df = add_risk_regimes(df)
 
 
-# ---------- OUTPUT ----------
+#OUTPUT
 final_df = df[
     [
         'close',
@@ -64,47 +63,46 @@ final_df = df[
 os.makedirs("results", exist_ok=True)
 final_df.to_csv("results/nifty50_day03_risk_regimes.csv")
 
-print("✅ CSV GENERATED SUCCESSFULLY")
+print("CSV GENERATED SUCCESSFULLY")
 
 
 
 
-# ===============================
-# Day 04A – Regime Persistence & Transition
-# ===============================
+#Regime Persistence & Transition
+
 
 from risk_engine.regime_analysis import (
     compute_regime_persistence,
     compute_transition_matrix
 )
 
-print(">>> DAY 04 RUNNING <<<")
+print("04 RUNNING")
 
-# ---------- REGIME PERSISTENCE ----------
+#REGIME PERSISTENCE
 persistence_df = compute_regime_persistence(df)
 persistence_df.to_csv(
     "results/nifty50_day04_regime_persistence.csv",
     index=False
 )
 
-# ---------- TRANSITION MATRIX ----------
+#TRANSITION MATRIX
 transition_matrix = compute_transition_matrix(df)
 transition_matrix.to_csv(
     "results/nifty50_day04_transition_matrix.csv"
 )
 
-print("✅ DAY 04 CSVs GENERATED SUCCESSFULLY")
+print("04 CSVs GENERATED SUCCESSFULLY")
 
 
 
 
-# ===============================
-# Day 04B – Regime Performance
-# ===============================
+
+#Regime Performance
+
 
 from risk_engine.regime_performance import compute_regime_performance
 
-print(">>> DAY 04B RUNNING <<<")
+print("DAY 04B RUNNING")
 
 regime_perf_df = compute_regime_performance(df)
 
@@ -113,18 +111,18 @@ regime_perf_df.to_csv(
     index=False
 )
 
-print("✅ DAY 04B CSV GENERATED SUCCESSFULLY")
+print("04B CSV GENERATED SUCCESSFULLY")
 
 
 
 
-# ===============================
-# Day 05 – HMM Regime Detection
-# ===============================
+
+#HMM Regime Detection
+
 
 from risk_engine.hmm_regime import fit_hmm_regimes
 
-print(">>> DAY 05 RUNNING (HMM) <<<")
+print("05 RUNNING (HMM)")
 
 hmm_features = [
     "returns",
@@ -142,18 +140,18 @@ df_hmm.to_csv(
     "results/nifty50_day05_hmm_regimes.csv"
 )
 
-print("✅ DAY 05 HMM CSV GENERATED SUCCESSFULLY")
+print("HMM CSV GENERATED SUCCESSFULLY")
 
 
 
 
-# ===============================
-# Day 06 – HMM Regime Interpretation
-# ===============================
+
+# HMM Regime Interpretation
+
 
 from risk_engine.hmm_analysis import summarize_hmm_states
 
-print(">>> DAY 06 RUNNING <<<")
+print("06 RUNNING ")
 
 hmm_summary_df = summarize_hmm_states(df_hmm)
 
@@ -162,13 +160,13 @@ hmm_summary_df.to_csv(
     index=False
 )
 
-print("✅ DAY 06 HMM SUMMARY GENERATED SUCCESSFULLY")
+print(" HMM SUMMARY GENERATED SUCCESSFULLY")
 
 
 
-# ===============================
-# Day 07 – Regime-Aware Strategy
-# ===============================
+
+# Regime-Aware Strategy
+
 
 from risk_engine.strategy_overlay import (
     compute_strategy_returns,
@@ -176,7 +174,7 @@ from risk_engine.strategy_overlay import (
     hmm_based_exposure
 )
 
-print(">>> DAY 07 RUNNING <<<")
+print("07 RUNNING ")
 
 # Buy & Hold
 df["bh_returns"] = df["returns"]
@@ -208,10 +206,10 @@ df[strategy_cols].to_csv(
     "results/nifty50_day07_strategy_returns.csv"
 )
 
-print("✅ DAY 07 STRATEGY CSV GENERATED SUCCESSFULLY")
-# ===============================
+print("STRATEGY CSV GENERATED SUCCESSFULLY")
+
 # Day 08 – Strategy Performance
-# ===============================
+
 
 from risk_engine.performance_metrics import (
     compute_equity_curve,
@@ -219,7 +217,7 @@ from risk_engine.performance_metrics import (
     compute_max_drawdown
 )
 
-print(">>> DAY 08 RUNNING <<<")
+print(" 08 RUNNING")
 
 performance_summary = []
 
@@ -246,4 +244,4 @@ performance_df.to_csv(
     index=False
 )
 
-print("✅ DAY 08 PERFORMANCE SUMMARY GENERATED SUCCESSFULLY")
+print("PERFORMANCE SUMMARY GENERATED SUCCESSFULLY")
