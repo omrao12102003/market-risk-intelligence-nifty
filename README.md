@@ -65,13 +65,13 @@ Design principles:
 
 ---
 
-## 4. Day-by-Day Development (Day 0 → Day 9)
 
-This section explains **exactly what was built each day and why**.
+
+
 
 ---
 
-### Day 0 – Environment & Setup
+Environment & Setup
 
 * Created virtual environment
 * Installed required libraries
@@ -85,7 +85,7 @@ Purpose:
 
 ---
 
-### Day 01 – Data Ingestion & Pipeline Structure
+Data Ingestion & Pipeline Structure
 
 What was done:
 
@@ -101,7 +101,7 @@ Why:
 
 ---
 
-### Day 02 – Risk Metrics Computation
+Risk Metrics Computation
 
 Computed:
 
@@ -117,7 +117,7 @@ Why:
 
 ---
 
-### Day 03 – Rule-Based Regime Detection
+Rule-Based Regime Detection
 
 Built:
 
@@ -140,7 +140,7 @@ Why:
 
 ---
 
-### Day 04A – Regime Persistence & Transitions
+Regime Persistence & Transitions
 
 Analyzed:
 
@@ -157,7 +157,7 @@ This step validates **regime stability**.
 
 ---
 
-### Day 04B – Regime Performance Validation
+Regime Performance Validation
 
 Computed (per regime):
 
@@ -174,7 +174,7 @@ Why:
 
 ---
 
-### Day 05 – Hidden Markov Model (HMM) Regime Detection
+Hidden Markov Model (HMM) Regime Detection
 
 Introduced:
 
@@ -197,7 +197,7 @@ Why:
 
 ---
 
-### Day 06 – HMM Regime Interpretation
+HMM Regime Interpretation
 
 Performed:
 
@@ -212,7 +212,7 @@ Why:
 
 ---
 
-### Day 07 – Regime-Aware Strategy Overlay
+Regime-Aware Strategy Overlay
 
 Built strategies:
 
@@ -232,7 +232,7 @@ Why:
 
 ---
 
-### Day 08 – Strategy Performance & Stress Testing
+Strategy Performance & Stress Testing
 
 Evaluated:
 
@@ -251,22 +251,9 @@ Findings:
 
 ---
 
-### Day 09 – Documentation & Finalization
 
-Completed:
 
-* Full project documentation
-* Clear explanation of logic and limitations
-* Interview-ready narrative
-
-Purpose:
-
-* Make the project understandable to new users
-* Convert code into a clear financial story
-
----
-
-## 5. CSV Outputs and Their Purpose
+CSV Outputs and Their Purpose
 
 Each CSV represents a **specific stage of analysis**:
 
@@ -286,7 +273,7 @@ These files allow:
 
 ---
 
-## 6. What This Project Does and Does Not Do
+What This Project Does and Does Not Do
 
 ### This project does:
 
@@ -295,7 +282,7 @@ These files allow:
 * Control exposure using regimes
 * Improve risk-adjusted outcomes
 
-### This project does not:
+This project does not:
 
 * Predict prices
 * Guarantee profits
@@ -303,7 +290,7 @@ These files allow:
 
 ---
 
-## 7. How to Run the Project
+ How to Run the Project
 
 1. Activate virtual environment
 2. Place data in `data/`
@@ -325,7 +312,8 @@ This project demonstrates:
 * Responsible use of machine learning
 * Clean, modular system design
 
-It reflects how **professional quantitative teams** approach market risk and decision-making.
+
 
 ---
+
 
